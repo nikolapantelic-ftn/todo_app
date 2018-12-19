@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Todo;
 
-class ListController extends Controller
+class TodoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,14 +37,9 @@ class ListController extends Controller
      */
     public function store(Request $request)
     {
-        Todo::create([
-            'user_id' => Auth::user()->id, 
-            'title' => $request->title, 
-            'content' => $request->content, 
-            'priority' => $request->priority, 
-            'is_done' => $request->is_done,
-        ]);
-         \Log::info($request->all());
+        return Todo::create(array_merge($request->all(),[
+                'user_id' => Auth::user()->id, 
+                ]));
     }
 
     /**
@@ -55,7 +50,7 @@ class ListController extends Controller
      */
     public function show($id)
     {
-        Todo::findOrFail($id);
+        return Todo::findOrFail($id);
     }
 
     /**
@@ -80,6 +75,7 @@ class ListController extends Controller
     {
         $todo = Todo::findOrFail($id);
         $todo->update($request->all());
+        return $todo;
     }
 
     /**
@@ -90,6 +86,6 @@ class ListController extends Controller
      */
     public function destroy($id)
     {
-        Todo::findOrFail($id)->delete();
+        return Todo::destroy($id);
     }
 }

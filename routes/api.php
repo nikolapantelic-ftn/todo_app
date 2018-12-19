@@ -34,4 +34,4 @@ Route::group([
 
 });
 
-Route::resource('todo', 'ListController');
+Route::resource('todo', 'TodoController');

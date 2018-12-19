@@ -51,7 +51,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function todos()
     {
-        return $this->hasMany('App\Todo');
+        return $this->hasMany(User::class);
     }
 
 }
