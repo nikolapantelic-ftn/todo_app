@@ -12,14 +12,15 @@ class Todo extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id' ,'title', 'content', 'priority', 'is_done',
+        'user_id' ,'title', 'content', 'priority', 'is_done', 'public',
     ];
 
     /**
-     * Get the post that owns the comment.
+     * Get the user that owns the entry.
      */
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
 }

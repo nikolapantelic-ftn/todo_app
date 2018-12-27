@@ -24,3 +24,4 @@ Route::post('logout', 'AuthController@logout');
 
 
 Route::resource('todo', 'TodoController');
+Route::get('indexPublic', 'TodoController@indexPublic');

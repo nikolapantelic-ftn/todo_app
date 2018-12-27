@@ -11,6 +11,11 @@ use JWTAuth;
 use App\User;
 use App\Http\Requests\Register;
 
+class InvalidPassowordConfirmationException
+{
+
+}
+
 class AuthController extends Controller
 {
     /**

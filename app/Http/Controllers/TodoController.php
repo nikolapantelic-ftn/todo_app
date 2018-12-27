@@ -13,6 +13,21 @@ class TodoController extends Controller
     {
         $this->middleware('auth:api');
     }
+
+    public function indexPublic()
+    {
+        $todos = Todo::all();
+        $publicTodos = [];
+
+        foreach($todos as $todo)
+        {
+            if($todo->public)
+            {
+                array_push($publicTodos, $todo);
+            }
+        }
+        return $publicTodos;
+    }
     
     /**
      * Display a listing of the resource.
