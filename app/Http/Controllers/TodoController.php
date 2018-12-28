@@ -11,22 +11,12 @@ class TodoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api');
+        $this->middleware('auth:api', ['except' => 'indexPublic']);
     }
 
     public function indexPublic()
     {
-        $todos = Todo::all();
-        $publicTodos = [];
-
-        foreach($todos as $todo)
-        {
-            if($todo->public)
-            {
-                array_push($publicTodos, $todo);
-            }
-        }
-        return $publicTodos;
+        return Todo::where('public', true)->with('user')->get();
     }
     
     /**
@@ -109,3 +99,5 @@ class TodoController extends Controller
         return Todo::destroy($id);
     }
 }
+
+
